@@ -21,7 +21,7 @@ class Module(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('subjects:list')
+        return reverse('modules:get-subject-modules', kwargs={'pk': self.subject.id})
 
 
     class Meta:

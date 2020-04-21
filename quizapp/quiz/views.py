@@ -12,7 +12,7 @@ services = QuizServices()
 def getModuleAndRedirect(request, pk):
     """view to get module id and redirect to create choice"""
 
-    services.module = services.getModules(pk)
+    services.module = services.getModule(pk)
     return redirect(reverse("quiz:create"))
 
 

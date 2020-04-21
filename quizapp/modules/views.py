@@ -32,7 +32,7 @@ class ModuleCreate(CreateView):
 
 
 class ModuleListView(ListView):
-    """class base view for view list of subjects"""
+    """class base view for view list of subject modules"""
 
     model = Module
     context_object_name = 'modules'
@@ -44,7 +44,7 @@ class ModuleListView(ListView):
 
 
 class ModuleUpdate(UpdateView):
-    """class based view for updating subjects"""
+    """class based view for updating modules"""
 
 
     model = Module
@@ -53,8 +53,13 @@ class ModuleUpdate(UpdateView):
 
 
 class ModuleDelete(DeleteView):
-    """class based view for deleting subjects"""
-    
+    """class based view for deleting modules"""
     
     model = Module
     success_url = reverse_lazy('subjects:list')
+    
+
+    def delete(self, *args, **kwargs):
+        module = services.getModule(moduleId=self.kwargs['pk'])
+        self.success_url = reverse_lazy('modules:get-subject-modules', kwargs={ "pk": module.subject.id })
+        return super(ModuleDelete, self).delete(*args, **kwargs)

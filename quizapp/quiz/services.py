@@ -3,12 +3,12 @@ from .forms import QuestionForm, AnswerForm, ChoicesForm
 from .models import Answers, Choices, Questions
 
 class QuizServices:
-    def getModules(self, moduleId):
+    def getModule(self, moduleId):
         return Module.objects.filter(pk=moduleId)[0]
 
 
     def getModuleQuestions(self, moduleId):
-        return Questions.objects.filter(module=self.getModules(moduleId))
+        return Questions.objects.filter(module=self.getModule(moduleId))
 
 
     def postCreateQuizChoice(self, request):

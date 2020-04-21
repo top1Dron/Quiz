@@ -4,6 +4,8 @@ from subjects.models import Subject
 
 
 class ModuleServices:
+    subject = None
+
     def getSubjectModules(self, subjectId):
         """return all modules with given subject"""
 
@@ -14,3 +16,7 @@ class ModuleServices:
         """return subject with given subject id"""
         
         return Subject.objects.filter(pk=subjectId)
+
+
+    def getModule(self, moduleId):
+        return Module.objects.filter(pk=moduleId)[0]

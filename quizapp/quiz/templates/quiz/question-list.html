@@ -5,7 +5,7 @@
 {% block title %}Список запитань{% endblock title %}
 
 {% block main_content %}
-<h1>Список запитань</h1>
+<h1>Список запитань теми: {{questions.0.module}}</h1>
 <ul>
     {% for question in questions %}
     <li>
@@ -17,5 +17,9 @@
         <hr />
     </li>
     {% endfor %}
+    {% if questions.0.module.subject.id  %}
+        <a class='back' href={% url 'modules:get-subject-modules' questions.0.module.subject.id %}>До списку тем</a>
+    {% endif %}
+    
 </ul>
 {% endblock main_content %}
