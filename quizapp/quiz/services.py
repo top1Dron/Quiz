@@ -6,6 +6,11 @@ class QuizServices:
     def getModules(self, moduleId):
         return Module.objects.filter(pk=moduleId)[0]
 
+
+    def getModuleQuestions(self, moduleId):
+        return Questions.objects.filter(module=self.getModules(moduleId))
+
+
     def postCreateQuizChoice(self, request):
         questionForm = QuestionForm(data=request.POST)
 

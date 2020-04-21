@@ -9,18 +9,12 @@ from .services import ModuleServices
 
 services = ModuleServices()
 
-class ModuleGetCreate(CreateView):
-    """class base view for creating new module"""
 
+def getSubjectAndRedirect(request, pk):
+    """view to get subject id and redirect to create module"""
 
-    model = Module
-    form_class = ModuleForm
-    template_name = 'modules/create.html'
-
-
-    def get(self, request, pk, *args, **kwargs):
-        services.subject = services.getSubject(subjectId=pk)[0]
-        return super().get(request, *args, **kwargs)
+    services.subject = services.getSubject(subjectId=pk)[0]
+    return redirect(reverse("modules:create"))
 
 
 class ModuleCreate(CreateView):
@@ -48,11 +42,6 @@ class ModuleListView(ListView):
     def get_queryset(self):
         return services.getSubjectModules(self.kwargs['pk'])
 
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
 
 class ModuleUpdate(UpdateView):
     """class based view for updating subjects"""
@@ -60,7 +49,7 @@ class ModuleUpdate(UpdateView):
 
     model = Module
     form_class = ModuleForm
-    template_name = 'subjects/update.html'
+    template_name = 'modules/update.html'
 
 
 class ModuleDelete(DeleteView):

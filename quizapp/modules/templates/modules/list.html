@@ -10,11 +10,10 @@
     {% for module in modules %}
     <li>
         {{ module }}
+        <a class='update' href="{% url "modules:update" module.id %}">Оновити модуль</a>
+        <a class="remove" href={% url "modules:delete" module.id %}>X</a>
         <a class='add-quiz' href={% url 'quiz:get-module' module.id %}>Додати запитання та відповіді</a>
-        {% comment %} <a href="{% url "subjects:update" pk=subject.pk %}"></a>
-        <a class="remove" href={% url "subjects:delete" subject.id %}>X</a>
-        <a class='view-modules' href={% url 'modules:get-subject-modules' subject.id %}>Усі теми</a>
-         {% endcomment %}
+        <a class='get-module-questions' href={% url 'quiz:get-module-questions' module.id %}>Усі запитання</a>
         <hr />
     </li>
     {% endfor %}

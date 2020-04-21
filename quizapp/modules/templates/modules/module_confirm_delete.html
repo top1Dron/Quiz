@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+
+
+<form action='{% url 'modules:delete' object.pk %}' method='POST'>{% csrf_token %}
+    <h1>Ви впевнені, що хочете видалити тему {{ object.name }}? (Це видалить усі тестові завдання до теми та усі пройдені тести)?</h1>
+    <p><input type='submit' value='Так' />  <a href='../'>Ні</a></p>
+
+</form>
+
+
+{% endblock main_content%}

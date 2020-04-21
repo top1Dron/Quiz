@@ -46,5 +46,18 @@ class ChoiceCreate(View):
 
 
     def post(self, request, *args, **kwargs):
-        executed = services.postCreateQuizChoice(request)
+        services.postCreateQuizChoice(request)
         return redirect('subjects:list')
+
+
+class QuestionList(ListView):
+    """class base view for getting all questions in module"""
+
+
+    model = Questions
+    context_object_name = 'questions'
+    template_name = 'quiz/question-list.html'
+
+    
+    def get_queryset(self):
+        return services.getModuleQuestions(self.kwargs['pk'])

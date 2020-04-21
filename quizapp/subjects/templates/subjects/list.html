@@ -12,7 +12,7 @@
         <a href="{% url "subjects:update" pk=subject.pk %}">{{ subject }}</a>
         <a class="remove" href={% url "subjects:delete" subject.id %}>X</a>
         <a class='view-modules' href={% url 'modules:get-subject-modules' subject.id %}>Усі теми</a>
-        <a class='add-module' href={% url 'modules:create-module' subject.id%}>Створити тему</a>
+        <a class='add-module' href={% url 'modules:get-subject' subject.id%}>Створити тему</a>
         <hr />
     </li>
     {% endfor %}
