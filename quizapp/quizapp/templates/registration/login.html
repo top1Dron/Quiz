@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Авторизація{% endblock title %}
+
+{% block main_content %}
+    <h1>Авторизація</h1>
+    {% if form.errors %}
+        <p>Помилка. Ім'я користувача чи пароль невірні. Спробуйте ще раз</p>
+    {% else %}
+        <p>Введіть логін та пароль:</p>
+    {% endif %}
+    <form action='.' method='POST' class='login'>
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type='hidden' name='next' value="{{ next }}" />
+        <button type='submit'>Авторизуватися</button>
+    </form>
+    <p><a href='{% url 'accounts:password_reset' %}'>Забули пароль</a></p>
+    <p><a href='{% url 'accounts:register' %}'>Зареєструватися</a></p>
+{% endblock main_content %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Реєстрація{% endblock title %}
+
+{% block extra_head %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block main_content %}
+    <h1>Створити аккаунт користувача</h1>
+    <form action='.' method='post'>
+        {{ user_form.as_p }}
+        <p>{{ profile_form.isLecturer.label_tag }} {{ profile_form.isLecturer }}</p>
+        <p>{{ profile_form.birthdate.label_tag }} {{ profile_form.birthdate }}</p>
+        <span id='student' style>
+            <p>{{ profile_form.group.label_tag }} {{ profile_form.group }}</p>
+        </span>
+
+        <span id='lecturer' style="display: none;">
+            <p>{{ profile_form.faculty.label_tag }} {{ profile_form.faculty }}</p>
+            <p>{{ profile_form.cathedra.label_tag }} {{ profile_form.cathedra }}</p>
+        </span>
+        {% csrf_token %}
+        <p><input type='submit' value='Зареєструватися' id='submit-data'></p>
+    </form>
+
+    <script>
+        {% comment %} $('#id_birthdate').datepicker(); {% endcomment %}
+    </script>
+{% endblock main_content %}
+{% block javascript %}
+    <script src={% static 'js/accounts/register_user.js' %}></script>
+{% endblock javascript %}

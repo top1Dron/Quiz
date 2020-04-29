@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Список тем{% endblock title %}
+
+{% block main_content %}
+<h1>Список тем предмету: {{subject}}</h1>
+<ul>
+    {% for module in modules %}
+    <li>
+        {{ module }}
+        <a class='update' href={% url "modules:update" module.id %}>Оновити модуль</a>
+        <a class="remove" href={% url "modules:delete" module.id %}>X</a>
+        <a class='add-quiz' href={% url 'quiz:get-module' module.id %}>Додати запитання та відповіді</a>
+        <a class='get-module-questions' href={% url 'quiz:get-module-questions' module.id %}>Усі запитання</a>
+        <hr />
+    </li>
+    {% endfor %}
+    <a class='back' href={% url 'subjects:list' %}>До списку предметів</a>
+</ul>
+{% endblock main_content %}

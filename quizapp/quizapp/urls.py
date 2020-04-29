@@ -21,4 +21,5 @@ urlpatterns = [
     path('quiz/', include(('quiz.urls', 'quiz'), namespace='quiz')),
     path('subjects/', include(('subjects.urls', 'subjects'), namespace='subjects')),
     path('modules/', include(('modules.urls', 'modules'), namespace='modules')),
+    path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
 ]

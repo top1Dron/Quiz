@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block title %}Розлогінування{% endblock title %}
+{% block main_content %}
+    <h1>Ви вийшли із системи.</h1>
+    <p>Сессія завершена. Ви можете <a href='{% url 'accounts:login' %}'>авторизуватися</a> у будь-який момент. Будемо вас чекати!</p>
+{% endblock main_content %}

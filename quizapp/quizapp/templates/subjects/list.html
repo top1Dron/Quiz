@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Список предметів{% endblock title %}
+
+{% block main_content %}
+<h1>Список предметів</h1>
+<ul>
+    {% if subjects %}
+        {% for subject in subjects %}
+        <li>
+            <a href="{% url "subjects:update" pk=subject.pk %}">{{ subject }}</a>
+            <a class="remove" href={% url "subjects:delete" subject.id %}>X</a>
+            <a class='view-modules' href={% url 'modules:get-subject-modules' subject.id %}>Усі теми</a>
+            <a class='add-module' href={% url 'modules:get-subject' subject.id%}>Створити тему</a>
+            <hr />
+        </li>
+        {% endfor %}
+    {% endif %}
+</ul>
+<a class='add' href={% url 'subjects:create' %}>Додати новий предмет</a>
+{% endblock main_content %}
